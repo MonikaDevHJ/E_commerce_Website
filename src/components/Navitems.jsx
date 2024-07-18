@@ -85,7 +85,7 @@ const NavItems = () => {
 
                  {/* scoial Toggler */}
                  <div className="ellepsis-bar d-md-none"
-                 onClick = {()=>setSocialToggle(!socialToggle)}>
+                 onClick={() => setSocialToggle(!socialToggle)}>
                  <i className="icofont-info-square"></i>
                  </div>
 
