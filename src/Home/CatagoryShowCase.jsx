@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Rattings from "../components/Rattings"
-import { Link } from 'react-router-dom';
-
+import Rattings from "../components/Rattings";
+import { Link } from "react-router-dom";
 
 const title = "Our Products";
 
@@ -83,9 +82,13 @@ const ProductData = [
 const CatagoryShowCase = () => {
   const [items, setItems] = useState(ProductData);
 
-
-// Catogory Based Filtering
-
+  // Catogory Based Filtering
+  const filterItem = (categItem) => {
+    const updateItems = ProductData.filter((curElem) => {
+      return curElem.cate === categItem;
+    });
+    setItems(updateItems);
+  };
 
   return (
     <div className="course-section style-3 padding-tb">
@@ -102,78 +105,59 @@ const CatagoryShowCase = () => {
       {/* main section */}
       <div className="container">
         {/* section header */}
-        <div className="section-header">
-            <h2 className="title">{title}</h2>
-            <div className="course-filter-group">
-                <ul className="lab-ul">
-                    <li onClick={()=>filterItem("All")}>
-                        All
-                    </li>
-                    <li onClick={()=>filterItem("Shoes")}>
-                        Shoes
-                    </li>
-                    <li onClick={()=>filterItem("Bags")}>
-                        Bags
-                    </li>
-                    <li onClick={()=>filterItem("Phones")}>
-                        Phones
-                    </li>
-                    <li onClick={()=>filterItem("Beuty")}>
-                        Beauty
-                    </li>
-
-                </ul>
-            </div>
+        <div className="section-header ">
+          <h2 className="title">{title}</h2>
+          <div className="course-filter-group">
+            <ul className="lab-ul">
+              <li onClick={() => setItems(ProductData)}>All</li>
+              <li onClick={() => filterItem("Shoes")}>Shoes</li>
+              <li onClick={() => filterItem("Bags")}>Bags</li>
+              <li onClick={() => filterItem("Phones")}>Phones</li>
+              <li onClick={() => filterItem("Beuty")}>Beauty</li>
+            </ul>
+          </div>
         </div>
 
         {/* Section Body */}
         <div className="section-wrapper">
-            <div className="row g-4 justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 course-filter">
-                {
-                            items.map((ProductData)=> <div key ={ProductData.id} className="col">
-                                <div className="course-items style-4">
-                                    <div className="course-inner">
-                                        <div className="course-thumb">
-                                            <img src={ProductData.imgUrl} alt="" />
-                                            <div className="course-category">
-                                                <div className="course-cate">
-                                                    <a href="#">{ProductData.cate}</a>
+          <div className="row g-4 justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 course-filter">
+            {items.map((ProductData) => (
+              <div key={ProductData.id} className="col">
+                <div className="course-items style-4">
+                  <div className="course-inner">
+                    <div className="course-thumb">
+                      <img src={ProductData.imgUrl} alt="" />
+                      <div className="course-category">
+                        <div className="course-cate">
+                          <a href="#">{ProductData.cate}</a>
+                        </div>
+                        <div className="course-review"> 
+                          <Rattings />
+                        </div>
+                      </div>
+                    </div>
 
+                    {/* content */}
+                    <div className="course-content">
+                      <Link to={`/shop/${ProductData.id}`}>
+                        {" "}
+                        <h5>{ProductData.title}</h5>
+                      </Link>
 
-                                                </div>
-                                                <div className="course-review">
-                                                             <Rattings/>
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-
-                                        {/* content */}
-                                        <div className="course-content">
-                                            <Link to={`/shop/${ProductData.id}`}> <h5>{ProductData.title}</h5></Link>
-
-                                          <div className="course-footer">
-                                            <div className="course-autor">
-                                            <Link to="/" className="ca-name">{ProductData.brand}</Link>
-
-                                            </div>
-                                            <div className="course-price">
-                                                {ProductData.price}
-
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>  )
-                }
-            </div>
-
+                      <div className="course-footer">
+                        <div className="course-autor">
+                          <Link to="/" className="ca-name">
+                            {ProductData.brand}
+                          </Link>
+                        </div>
+                        <div className="course-price">{ProductData.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
