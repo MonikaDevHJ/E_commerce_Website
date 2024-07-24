@@ -4,6 +4,9 @@ import HomeCatagory from './HomeCatagory'
 import CatagoryShowCase from './CatagoryShowCase'
 import Registeer from './Registeer'
 import LocationSpread from './LocationSpread'
+import AboutUs from './AboutUs'
+import AppSection from './AppSection'
+import Sponser from './Sponser'
 
 
 const Home = () => {
@@ -14,6 +17,9 @@ const Home = () => {
       <CatagoryShowCase/>
       <Registeer/>
       <LocationSpread/>
+      <AboutUs/>
+      <AppSection/>
+      <Sponser/>
     </div>
   )
 }
