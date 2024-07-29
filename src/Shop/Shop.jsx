@@ -6,6 +6,8 @@ import Paginations from './Pagination';
 import '../App.css'; // Adjust the path according to the actual location of styles.css
 import Search from './Search';
 import ShopCatgory from './ShopCatgory';
+import PopularPost from './PopularPost';
+import Tags from './Tags';
 
 const Shop = () => {
   const [GridList, setGridList] = useState(true);
@@ -83,6 +85,8 @@ const filterItem = (curcat) => {
                  setProducts = {setProducts}
                  selectedCategory = {selectedCategory}
                  />
+                 <PopularPost/>
+                 <Tags/>
               </aside>
             </div>
           </div>
