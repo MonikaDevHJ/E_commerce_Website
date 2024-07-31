@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import PopularPost from "./PopularPost";
+import Tags from "./Tags"
 
 // Import Swiper styles
 import "swiper/css";
 import {Autoplay} from "swiper/modules"
 import ProductDisplay from "./ProductDisplay";
+import Review from "./Review";
 
 
 const SingleProduct = () => {
@@ -101,14 +104,20 @@ const SingleProduct = () => {
                 </div>
 
                 <div className="review">
-                  Review
-
+               <Review/>
                 </div>
 
               </article>
             </div>
+            
+            {/* right side */}
+            <div className="col-lg-4 col-12"> right side
+              <aside className="ps-lg-4">
+                <PopularPost/>
+                <Tags/>
 
-            <div className="col-lg-4 col-12">Right Side</div>
+              </aside>
+            </div>
           </div>
         </div>
       </div>
