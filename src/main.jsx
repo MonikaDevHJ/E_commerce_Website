@@ -17,6 +17,7 @@ import Blog from './blog/Blog.jsx';
 import Shop from './Shop/Shop.jsx';
 import About from "./About/About.jsx"
 import SingleProduct from './Shop/SingleProduct.jsx';
+import CartPage from './Shop/CartPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,18 +33,21 @@ const router = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path :"/shop",
-        element : <Shop/>
-
+        path: 'shop',
+        element: <Shop/>
       },
       {
-        path :"/About",
-        element:<About/>
+        path: 'about',
+        element: <About/>
       },
       {
-        path : "shop/:id",
-        element :<SingleProduct/>
-      }
+        path: 'shop/:id',
+        element: <SingleProduct/>
+      },
+      {
+        path: 'cart-page',
+        element: <CartPage/>
+      },
     ],
   },
 ]);
