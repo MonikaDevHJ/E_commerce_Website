@@ -2,38 +2,34 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../components/Modal.css";
-import {useLocation} from "react-router-dom";
-import {useNavigate} from "react-router-dom"
-
-
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutPage = () => {
   const [show, setShow] = useState(false);
   const [activeTab, setActiveTab] = useState("visa");
 
   // Handle Tab Change
-  const handleTabChange = tabId => {
+  const handleTabChange = (tabId) => {
     setActiveTab(tabId);
   };
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-
   // direct To Home Page
   const location = useLocation();
   const navigate = useNavigate();
-  
-  const from = location.state?.from?.pathname || "/"
 
-  const handleOrderConfirm = () =>{
-    alert("your Order is Placed Successfully! ")
-    
-    
+  const from = location.state?.from?.pathname || "/";
+
+  const handleOrderConfirm = () => {
+    alert("your Order is Placed Successfully! ");
+
     // When Order Is Placed We Do Not need store order In locally Place
     localStorage.removeItem("cart");
-    navigate(from, {replace:true})
-  }
+    navigate(from, { replace: true });
+  };
 
   return (
     <div className="modalcard">
@@ -56,9 +52,9 @@ const CheckOutPage = () => {
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   <li className="nav-item" role="presentation">
                     <a
-                      className={`nav-link ${activeTab === "visa"
-                        ? "active"
-                        : ""}`}
+                      className={`nav-link ${
+                        activeTab === "visa" ? "active" : ""
+                      }`}
                       id="visa-tab"
                       data-toggle="tab"
                       role="tab"
@@ -77,9 +73,9 @@ const CheckOutPage = () => {
 
                   <li className="nav-item" role="presentation">
                     <a
-                      className={`nav-link ${activeTab === "paypal"
-                        ? "active"
-                        : ""}`}
+                      className={`nav-link ${
+                        activeTab === "paypal" ? "active" : ""
+                      }`}
                       id="paypal-tab"
                       data-toggle="tab"
                       role="tab"
@@ -101,9 +97,9 @@ const CheckOutPage = () => {
                 <div className="tab-content" id="myTabContent">
                   {/* Visa content */}
                   <div
-                    className={`tab-pane fade ${activeTab === "visa"
-                      ? "show active"
-                      : ""}`}
+                    className={`tab-pane fade ${
+                      activeTab === "visa" ? "show active" : ""
+                    }`}
                     id="visa"
                     role="tabpanel"
                     aria-labelledby="visa-tab"
@@ -167,7 +163,10 @@ const CheckOutPage = () => {
                       </div>
 
                       <div className="px-5 pay">
-                        <button className="btn btn-success btn-block" onClick={handleOrderConfirm} >
+                        <button
+                          className="btn btn-success btn-block"
+                          onClick={handleOrderConfirm}
+                        >
                           Order Now
                         </button>
                       </div>
@@ -176,9 +175,9 @@ const CheckOutPage = () => {
 
                   {/* PayPal Content */}
                   <div
-                    className={`tab-pane fade ${activeTab === "paypal"
-                      ? "show active"
-                      : ""}`}
+                    className={`tab-pane fade ${
+                      activeTab === "paypal" ? "show active" : ""
+                    }`}
                     id="paypal"
                     role="tabpanel"
                     aria-labelledby="paypal-tab"
@@ -239,12 +238,13 @@ const CheckOutPage = () => {
                           />
                           <span></span>
                         </div>
-
-
                       </div>
 
                       <div className="px-5 pay">
-                        <button className="btn btn-success btn-block" onClick={handleOrderConfirm}>
+                        <button
+                          className="btn btn-success btn-block"
+                          onClick={handleOrderConfirm}
+                        >
                           Add PayPal
                         </button>
                       </div>
@@ -253,8 +253,10 @@ const CheckOutPage = () => {
                 </div>
 
                 {/* payment descliamer */}
-                <p className="mt-3 px-4 p-Disclaimer"><em>Payment Discliar :</em> In no event shall payment or Partial payment by Owner for any material or service </p>
-
+                <p className="mt-3 px-4 p-Disclaimer">
+                  <em>Payment Discliar :</em> In no event shall payment or
+                  Partial payment by Owner for any material or service{" "}
+                </p>
               </div>
             </div>
           </div>
