@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import blogList from "../utilis/blogdata";
 import { useParams } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
+import Tags from "../Shop/Tags";
+import PopularPost from "../Shop/PopularPost"
 
 const socialList = [
   { link: "#", iconName: "icofont-facebook", className: "facebook" },
@@ -100,6 +102,7 @@ const SinleBlog = () => {
                                   <a
                                     href="https://youtu.be/PGuKjkdGrEI?si=l9Fsw5TUSEUrluKb"
                                     className="video-button popup"
+                                    target="_blank"
                                   >
                                     <i className="icofont-ui-play" />
                                   </a>
@@ -172,9 +175,14 @@ const SinleBlog = () => {
               </article>
             </div>
 
-            
 
-            <div className="col-lg-4 col-12">Right Side</div>
+
+            <div className="col-lg-4 col-12">
+              <aside>
+                          <Tags/>
+                          <PopularPost/>
+              </aside>
+            </div>
           </div>
         </div>
       </div>
