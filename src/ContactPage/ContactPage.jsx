@@ -127,18 +127,20 @@ const ContactPage = () => {
                 />
               </div>
               <div className="form-group w-100">
-                <textarea name="message" id="meassge" row="8" placeholder="Your Message"></textarea>
-
-
-
+                <textarea
+                  name="message"
+                  id="meassge"
+                  row="8"
+                  placeholder="Your Message"
+                />
               </div>
 
               <div className="form-group w-100 text-center">
                 <button className="lab-btn">
-                    <span>{btnText}</span>
-
+                  <span>
+                    {btnText}
+                  </span>
                 </button>
-
               </div>
             </form>
           </div>
