@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo/logo.png";
+import { AuthContext } from "../Contexts/AuthProivder";
 
 const NavItems = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   const [socialToggle, setSocialToggle] = useState(false);
   const [headerFixed, setHeaderFixed] = useState(false);
 
+  // authinfo
+  const {user} = useContext(AuthContext)
+  console.log(user);
+
   // advent listener
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", () => { 
     if (window.scrollY > 200) {
       setHeaderFixed(true);
     } else {

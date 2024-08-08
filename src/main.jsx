@@ -1,3 +1,4 @@
+// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
@@ -8,18 +9,20 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/css/icofont.min.css';
 import './assets/css/animate.css';
 import './assets/css/style.min.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Home/Home.jsx';
 import Blog from './blog/Blog.jsx';
 import Shop from './Shop/Shop.jsx';
-import About from "./About/About.jsx"
+import About from './About/About.jsx';
 import SingleProduct from './Shop/SingleProduct.jsx';
 import CartPage from './Shop/CartPage.jsx';
 import SinleBlog from './blog/SinleBlog.jsx';
 import ContactPage from './ContactPage/ContactPage.jsx';
+
+// Import AuthProvider
+import AuthProvider from './Contexts/AuthProivder'; // Ensure this path is correct
+import PrivateRoute from "./PrivateRoutes/PrivateRoutes.jsx"
+import Login from './components/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: '/blog',
@@ -36,36 +39,38 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog/:id',
-        element: <SinleBlog/>,
+        element: <SinleBlog />,
       },
       {
         path: 'shop',
-        element: <Shop/>
+        element: <Shop />,
       },
       {
         path: 'about',
-        element: <About/>
+        element: <About />,
       },
       {
         path: 'shop/:id',
-        element: <SingleProduct/>
+        element: <SingleProduct />,
       },
       {
         path: 'cart-page',
-        element: <CartPage/>
+        element: <PrivateRoute><CartPage /></PrivateRoute>, // Protected route
       },
       {
         path: 'contact',
-        element: <ContactPage/>
+        element: <ContactPage />,
       },
     ],
   },
-
-
+  {
+    path : "login",
+    element : <Login/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <AuthProvider>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </AuthProvider>
 );
