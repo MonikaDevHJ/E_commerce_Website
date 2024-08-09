@@ -25,7 +25,19 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (e) => {};
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    // console.log(form);
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password); 
+
+  }
+
+  const handleRegister = () =>{
+
+  }
 
   return (
     <div>
@@ -47,10 +59,10 @@ const Login = () => {
 
               <div className="form-group">
                 <input
-                  type="Password"
-                  name="Password"
-                  id="Password"
-                  placeholder="Passowrd *"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="passowrd *"
                   required
                 />
               </div>
@@ -73,7 +85,7 @@ const Login = () => {
             {/* account bottom */}
             <div className="account-bottom">
               <span className="d-blcok cate pt-10">
-                Do not Have An Account ? <Link to="/sign-up">Sign Up</Link>
+                Do not Have An Account?<Link to="/sign-up">Sign Up</Link>
               </span>
               <span className="or">
                 <span>or</span>
@@ -83,7 +95,7 @@ const Login = () => {
               <h5 className="subtitle">{socialTitle}</h5>
               <ul className="lab-ul social-icons justify-content-center">
                 <li>
-                  <button className="github">
+                  <button className="github" onClick={handleRegister}>
                     <i className="icofont-github"></i>
                   </button>
                 </li>
