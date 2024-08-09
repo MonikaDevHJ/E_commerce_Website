@@ -1,4 +1,3 @@
-// src/Contexts/AuthProvider.jsx
 import React, { useEffect, useState, createContext } from "react";
 import {
   GoogleAuthProvider,
@@ -21,27 +20,58 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Create user with email and password
-  const createUser = (email, password) => {
+  const createUser = async (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      setLoading(false);
+      return result;
+    } catch (error) {
+      setLoading(false);
+      console.error("Error creating user:", error);
+      throw error; // Re-throw the error for the caller to handle
+    }
   };
 
   // Sign up with Google
-  const signUpWithGmail = () => {
+  const signUpWithGmail = async () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      setLoading(false);
+      return result;
+    } catch (error) {
+      setLoading(false);
+      console.error("Error signing in with Google:", error);
+      throw error;
+    }
   };
 
   // Login with email and password
-  const login = (email, password) => {
+  const login = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password); // Correct method
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      setLoading(false);
+      return result;
+    } catch (error) {
+      setLoading(false);
+      console.error("Error logging in:", error);
+      throw error;
+    }
   };
 
   // Logout
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
-    return signOut(auth).finally(() => setLoading(false)); // Set loading to false after logout
+    try {
+      await signOut(auth);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error logging out:", error);
+      throw error;
+    }
   };
 
   // Listen for auth state changes
