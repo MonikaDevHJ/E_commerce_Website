@@ -31,13 +31,30 @@ const Login = () => {
     // console.log(form);
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password); 
+    console.log(email, password);
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        alert("Login SuccessFully");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage("Please Provide Valid Email & Passoword ");
+      });
+  };
 
-  }
-
-  const handleRegister = () =>{
-
-  }
+  const handleRegister = () => {
+    signUpWithGmail()
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage("Please Provide Valid Email & Passoword ");
+      });
+  };
 
   return (
     <div>
@@ -65,6 +82,14 @@ const Login = () => {
                   placeholder="passowrd *"
                   required
                 />
+              </div>
+              {/* Showing message */}
+              <div>
+                {errorMessage && (
+                  <div className="error-message text-danger mb-1">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
               <div className="form-group">
                 <div className="d-flex justify-content-between flex-wrap pt-sm-2">
